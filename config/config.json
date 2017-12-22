@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "flopez",
+    "password": 123456,
+    "database": "truenorth",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "seederStorage": "json"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "seederStorage": "json"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "seederStorage": "json"
+  }
+}
