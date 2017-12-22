@@ -131,6 +131,28 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /order:
+    # our controller name
+    x-swagger-router-controller: order
+    post:
+      operationId: createOrder
+      description: create an order
+      parameters:
+        - name: totalCost
+          description: order properties
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/orders"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /hello:
     # binds a127 app logic to a route
     x-swagger-router-controller: hello_world
@@ -159,6 +181,18 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
+  orders:
+    required:
+      - totalCost
+      - address
+    properties:
+      totalCost:
+        type: number
+        format: float
+      address:
+        type: string
+      latLng:
+        type: object
   Restaurants:
     required:
       - comercialName
