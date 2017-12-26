@@ -20,6 +20,11 @@ module.exports = {
       latLng:{
         type: Sequelize.GEOMETRY('POINT')
       },
+      restaurantId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: "Restaurants", key: "id" }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

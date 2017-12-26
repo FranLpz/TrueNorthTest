@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       associate: function(models) {
         // associations can be defined here
         Restaurant.hasMany(models.Review, {foreignKey: 'id', sourceKey: 'restaurantId'});
+        Restaurant.hasMany(models.Order, {foreignKey: 'id', sourceKey: 'restaurantId'});
       }
     }
   });

@@ -4,29 +4,36 @@
     const Op = Sequelize.Op
     const db = require("../../models/index.js");
     const Orders = db.Order;
+    const Restaurants = db.Restaurant;
     const amqp = require('amqplib/callback_api');
+    const { calcDistance } = require('../helpers/distanceService')
 
     
     function createOrder(req, res, next) {
-        const { totalCost, address, latLng } = req.body
-        Orders.create({ totalCost, address, latLng }).then(order => {
+        const { meals, totalCost, address, latLng, restaurantId } = req.body
+        Orders.create({ meals, totalCost, address, latLng, restaurantId }).then(order => {
             // you can now access the newly created task via the variable task4
-            res.json({success:1, description:'laksjdlkasjd'});
+            res.json({success:1, description:'Success'});
             return order;
-        }).then(order2queue => {
-            console.log('then que '+order2queue)
-            amqp.connect('amqp://localhost', function(err, conn) {
-                conn.createChannel(function(err, ch) {
-                  var q = 'task_queue';
-                  var msg = process.argv.slice(2).join(' ') || "Hello World!";
-              
-                  ch.assertQueue(q, {durable: true});
-                  ch.sendToQueue(q, new Buffer(msg), {persistent: true});
-                  console.log(" [x] Sent '%s'", msg);
+        }).then(order => {
+            Restaurants.findById(
+                order.restaurantId,
+                { attributes: ['Location', 'commercialEmail'] }
+            ).then( ({ Location, commercialEmail }) => {
+                calcDistance(Location.coordinates , order.latLng.coordinates)
+                .then( ({data}) => {
+                    if(data.rows[0].elements[0].status === "OK"){
+                        console.log(data.rows[0].elements[0].duration.text);
+                    } else {
+                        console.log("Google did not found a path for your motorcycle");
+                    }
+                    return true;
                 });
-                setTimeout(function() { conn.close(); process.exit(0) }, 500);
-            });
+                return Location, commercialEmail;
+            })
+
             
+            return order;
         });
     }
 
