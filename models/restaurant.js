@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       allowNull: false,
       primaryKey: true,
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER,
+      autoIncrement: true
     },
     logo: DataTypes.STRING, 
     comercialName: DataTypes.STRING, 
@@ -18,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        Restaurant.hasMany(models.Review, {foreignKey: 'id', sourceKey: 'restaurantId'});
       }
     }
   });

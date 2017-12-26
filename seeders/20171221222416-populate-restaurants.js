@@ -3,7 +3,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Restaurants', [{
-      "id": "880376925-0",
       "logo": "http://dummyimage.com/121x198.bmp/5fa2dd/ffffff",
       "comercialName": "Major Pharmaceuticals",
       "legalName": "Eyegate Pharmaceuticals, Inc.",
@@ -13,7 +12,6 @@ module.exports = {
       "adress": "73 Vera Road",
       "Location": Sequelize.fn('ST_GeomFromText', 'POINT(50.871962 4.287370999999999)')
     }, {
-      "id": "171260432-5",
       "logo": "http://dummyimage.com/188x146.jpg/5fa2dd/ffffff",
       "comercialName": "n/a",
       "legalName": "Scudder Strategic Municiple Income Trust",
@@ -23,7 +21,6 @@ module.exports = {
       "adress": "6230 Merchant Road",
       "Location": Sequelize.fn('ST_GeomFromText', 'POINT(50.871962 4.287370999999999)')
     }, {
-      "id": "653719766-X",
       "logo": "http://dummyimage.com/230x207.bmp/5fa2dd/ffffff",
       "comercialName": "Containers/Packaging",
       "legalName": "Ball Corporation",
@@ -33,7 +30,6 @@ module.exports = {
       "adress": "2 Lerdahl Circle",
       "Location": Sequelize.fn('ST_GeomFromText', 'POINT(50.871962 4.287370999999999)')
     }, {
-      "id": "110280881-4",
       "logo": "http://dummyimage.com/182x221.jpg/cc0000/ffffff",
       "comercialName": "Electronic Components",
       "legalName": "Richardson Electronics, Ltd.",
@@ -43,7 +39,6 @@ module.exports = {
       "adress": "78591 Forster Alley",
       "Location": Sequelize.fn('ST_GeomFromText', 'POINT(50.871962 4.287370999999999)')
     }, {
-      "id": "731974155-5",
       "logo": "http://dummyimage.com/188x188.png/dddddd/000000",
       "comercialName": "n/a",
       "legalName": "Bank of America Corporation",
@@ -53,7 +48,6 @@ module.exports = {
       "adress": "5680 Trailsway Circle",
       "Location": Sequelize.fn('ST_GeomFromText', 'POINT(50.871962 4.287370999999999)')
     }, {
-      "id": "361340133-9",
       "logo": "http://dummyimage.com/127x186.jpg/ff4444/ffffff",
       "comercialName": "Major Banks",
       "legalName": "Citizens Financial Group, Inc.",
@@ -63,7 +57,6 @@ module.exports = {
       "adress": "5767 Dakota Lane",
       "Location": Sequelize.fn('ST_GeomFromText', 'POINT(50.871962 4.287370999999999)')
     }, {
-      "id": "712023743-8",
       "logo": "http://dummyimage.com/187x196.bmp/ff4444/ffffff",
       "comercialName": "Major Chemicals",
       "legalName": "Luxfer Holdings PLC",
@@ -73,7 +66,6 @@ module.exports = {
       "adress": "450 Westend Plaza",
       "Location": Sequelize.fn('ST_GeomFromText', 'POINT(50.871962 4.287370999999999)')
     }, {
-      "id": "008383385-4",
       "logo": "http://dummyimage.com/206x143.png/5fa2dd/ffffff",
       "comercialName": "Hospital/Nursing Management",
       "legalName": "Global Partner Acquisition Corp.",
@@ -83,7 +75,6 @@ module.exports = {
       "adress": "958 Killdeer Court",
       "Location": Sequelize.fn('ST_GeomFromText', 'POINT(50.871962 4.287370999999999)')
     }, {
-      "id": "588770551-5",
       "logo": "http://dummyimage.com/231x124.bmp/ff4444/ffffff",
       "comercialName": "Computer Software: Prepackaged Software",
       "legalName": "Citrix Systems, Inc.",
@@ -93,7 +84,6 @@ module.exports = {
       "adress": "1 Rusk Park",
       "Location": Sequelize.fn('ST_GeomFromText', 'POINT(50.871962 4.287370999999999)')
     }, {
-      "id": "904466166-3",
       "logo": "http://dummyimage.com/231x110.jpg/ff4444/ffffff",
       "comercialName": "Major Pharmaceuticals",
       "legalName": "Xenon Pharmaceuticals Inc.",

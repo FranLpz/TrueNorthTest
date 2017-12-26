@@ -23,7 +23,7 @@ paths:
     x-swagger-router-controller: restaurant
     get:
       operationId: getAll
-      description: get the movies list
+      description: get the restaurants list
       # define the type of response for Success "200" and Error
       parameters:
         - in: query
@@ -90,7 +90,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
     put:
-      description: update a movie
+      description: update a restaurant
       # define the parameters
       parameters:
         - name: id
@@ -143,12 +143,53 @@ paths:
           in: body
           required: true
           schema:
-            $ref: "#/definitions/orders"
+            $ref: "#/definitions/Orders"
       responses:
         "200":
           description: Success
           schema:
             $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /review/{id}:
+    x-swagger-router-controller: review
+    post:
+      operationId: createReview
+      description: create an review for a restaurant
+      parameters:
+        - name: id
+          description: Restaurant id
+          type: string
+          in: path
+          required: true
+        - name: name
+          description: Name of review
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Reviews"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /review:
+    x-swagger-router-controller: review
+    get:
+      operationId: getReviews
+      description: get the restaurants list
+      # define the type of response for Success "200" and Error
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetRestaurantsListResponse"
         default:
           description: Error
           schema:
@@ -181,7 +222,19 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
-  orders:
+  Reviews:
+    required:
+      - name
+      - review
+      - rating
+    properties:
+      name:
+        type: string
+      review:
+        type: string
+      rating:
+        type: number
+  Orders:
     required:
       - totalCost
       - address

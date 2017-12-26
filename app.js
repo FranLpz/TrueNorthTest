@@ -8,23 +8,35 @@ const sequelize = new Sequelize('postgres://flopez:123456@localhost:5432/truenor
 //const models = require('./models/index.js')(sequelize);
 module.exports = app; // for testing
 
+const { calcDistance } = require("./api/helpers/distanceService");
+
 const config = {
   appRoot: __dirname // required config
 };
 
+
+
+
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
-
+  
   // install middleware
   swaggerExpress.register(app);
   const port = process.env.PORT || 10010;
   app.listen(port);
-  sequelize
+  
+  sequelize.sync()
+  .then(
+    () => console.error("Connected to DB"),
+    error => console.error(error)
+  );
+
+  /*sequelize
   .authenticate()
     .then(() => {
       console.log('Connection has been established successfully.');
     })
     .catch(err => {
       console.error('Unable to connect to the database:', err);
-    });
+    });*/
 });

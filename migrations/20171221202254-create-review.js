@@ -17,6 +17,11 @@ module.exports = {
       rating: {
         type: Sequelize.INTEGER
       },
+      restaurantId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: "Restaurants", key: "id" }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
