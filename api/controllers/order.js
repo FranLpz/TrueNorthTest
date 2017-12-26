@@ -6,6 +6,7 @@
     const Orders = db.Order;
     const Restaurants = db.Restaurant;
     const amqp = require('amqplib/callback_api');
+    const { producerOne } = require('../helpers/queueSys')
     const { calcDistance } = require('../helpers/distanceService')
 
     
@@ -27,6 +28,8 @@
                     } else {
                         console.log("Google did not found a path for your motorcycle");
                     }
+                    producerOne(JSON.stringify({'distance':data.rows[0].elements[0].duration.text, 'message':'You have a new order, Order Id: '+order.id}),'Notifications')
+                    producerOne(JSON.stringify(order),'Orders')
                     return true;
                 });
                 return Location, commercialEmail;

@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const calcDistance = (source, target) => {
-    return axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${firstLocation}|&destinations=${secondLocation}&key=AIzaSyColnIk7nrUZXnFu2VAVUll9mNp6PpxmSE`);
+    return axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${source}|&destinations=${target}`);
 };
 
 module.exports = {

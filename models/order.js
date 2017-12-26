@@ -1,14 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Order = sequelize.define('Order', {
-    meals: DataTypes.TEXT,
+    meals: DataTypes.ARRAY(DataTypes.INTEGER),
     totalCost: DataTypes.FLOAT,
     address: DataTypes.TEXT,
-    latLng: DataTypes.GEOMETRY('POINT')
+    latLng: DataTypes.GEOMETRY('POINT'),
+    restaurantId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        Order.belongsTo(models.Restaurant, { foreignKey: 'restaurantId', sourceKey: 'id' });
       }
     }
   });

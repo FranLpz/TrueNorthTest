@@ -239,6 +239,10 @@ definitions:
       - totalCost
       - address
     properties:
+      meals:
+        type: array
+        items: 
+          type: number
       totalCost:
         type: number
         format: float
