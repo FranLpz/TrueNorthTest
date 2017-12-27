@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: function(models) {
-        Order.belongsTo(models.Restaurant, { foreignKey: 'restaurantId', sourceKey: 'id' });
+        Order.belongsTo(models.Restaurant);
       }
     }
   });

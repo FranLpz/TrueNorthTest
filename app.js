@@ -4,8 +4,7 @@ const SwaggerExpress = require('swagger-express-mw');
 const Sequelize = require('sequelize');
 const app = require('express')();
 const Op = Sequelize.Op
-const sequelize = new Sequelize('postgres://flopez:123456@localhost:5432/truenorth');
-//const models = require('./models/index.js')(sequelize);
+//const sequelize = new Sequelize('postgres://flopez:123456@localhost:5432/truenorth');
 module.exports = app; // for testing
 
 const { calcDistance } = require("./api/helpers/distanceService");
@@ -14,9 +13,6 @@ const config = {
   appRoot: __dirname // required config
 };
 
-
-
-
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
   
@@ -24,12 +20,6 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   swaggerExpress.register(app);
   const port = process.env.PORT || 10010;
   app.listen(port);
-  
-  sequelize.sync()
-  .then(
-    () => console.error("Connected to DB"),
-    error => console.error(error)
-  );
 
   /*sequelize
   .authenticate()

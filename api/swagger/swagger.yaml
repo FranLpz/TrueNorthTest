@@ -71,9 +71,10 @@ paths:
             $ref: "#/definitions/ErrorResponse"
   /restautant/{id}:
     # our controller name
-    x-swagger-router-controller: restaurants
+    x-swagger-router-controller: restaurant
     get:
       description: get a restaurant
+      operationId: getById
       # define the type of response for Success "200" and Error
       parameters:
         - name: id
@@ -91,6 +92,7 @@ paths:
             $ref: "#/definitions/ErrorResponse"
     put:
       description: update a restaurant
+      operationId: updateRestaurant
       # define the parameters
       parameters:
         - name: id
@@ -101,7 +103,6 @@ paths:
         - name: title
           description: Restaurant properties
           in: body
-          required: true
           schema:
             $ref: "#/definitions/Restaurants"
       responses:
@@ -115,6 +116,7 @@ paths:
             $ref: "#/definitions/ErrorResponse"
     delete:
       description: delete a restaurant
+      operationId: removeRestaurant
       # define the parameters
       parameters:
         - name: id
@@ -149,6 +151,17 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    get:
+      operationId: getOrder
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/QueueResponse"
         default:
           description: Error
           schema:
@@ -194,35 +207,32 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /hello:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: hello_world
+  /notifications:
+    x-swagger-router-controller: notification
     get:
-      description: Returns 'Hello' to the caller
-      # used as the method name of the controller
-      operationId: hello
-      parameters:
-        - name: name
-          in: query
-          description: The name of the person to whom to say hello
-          required: false
-          type: string
+      operationId: getNotification
       responses:
         "200":
           description: Success
           schema:
-            # a pointer to a definition
-            $ref: "#/definitions/HelloWorldResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/QueueResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
   Reviews:
+    required:
+      - name
+      - review
+      - rating
+    properties:
+      name:
+        type: string
+      review:
+        type: string
+      rating:
+        type: number
+  GetNotificationsListResponse:
     required:
       - name
       - review
@@ -251,13 +261,9 @@ definitions:
       latLng:
         type: object
   Restaurants:
-    required:
-      - comercialName
-      - legalName
-      - logo
     properties:
       id:
-        type: string
+        type: number
       logo:
         type: string
       comercialName:
@@ -297,7 +303,7 @@ definitions:
       adress:
         type: string
       Location:
-        type: string
+        type: object
   GetRestaurantsListResponse:
     required:
       - restaurants
@@ -350,24 +356,56 @@ definitions:
               type: string
             Location:
               type: string
-  HelloWorldResponse:
-    required:
-      - message
-    properties:
-      message:
-        type: string
   GetRestaurantResponse:
     required:
-      - id
-      - title
-      - year
+      - comercialName
+      - legalName
+      - logo
     properties:
       id:
-        type: string
-      title: 
-        type: string
-      year:
         type: number
+      logo:
+        type: string
+      comercialName:
+        type: string
+      legalName:
+        type: string
+      rating:
+        type: number
+        minimum: 1
+        maximum: 5
+      reviews:
+        type: array
+        items: 
+          type: object
+          properties:
+            name:
+              type: string
+            review:
+              type: string
+            rating:
+              type: number
+      meals:
+        type: array
+        items: 
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            price:
+              type: number
+      commercialEmail:
+        type: string
+      adminNumber:
+        type: string
+      adress:
+        type: string
+      Location:
+        type: object
+  QueueResponse:
+    type: object
   GeneralResponse:
     type: object
     properties:

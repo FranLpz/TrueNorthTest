@@ -4,16 +4,14 @@
     "password": 123456,
     "database": "truenorth",
     "host": "127.0.0.1",
-    "dialect": "postgres",
-    "seederStorage": "json"
+    "dialect": "postgres"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "seederStorage": "json"
+    "dialect": "mysql"
   },
   "production": {
     "username": "root",

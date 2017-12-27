@@ -11,17 +11,17 @@ function reviewModel(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        Review.belongsTo(models.Restaurant, { foreignKey: 'restaurantId', sourceKey: 'id' });        
+        Review.belongsTo(models.Restaurant);        
       }
     },
     hooks: {
-      //afterCreate: afterCreate
+      //afterCreate: calculateRating
     }
   });
   return Review;
 };
 
-function afterCreate(review, opts, done) {
+function calculateRating(review, opts, done) {
   console.log('ok ', review.restaurantId)
   const Restaurant = require("./restaurant");
   console.log(Restaurant);
