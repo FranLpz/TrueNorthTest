@@ -34,7 +34,7 @@ function createReview(req, res, next) {
         }
     )*/.then( response => {
             console.log(`review successfully created`);
-            res.json({success:1, description:`Review successfully created`});
+            res.json({success:1, description:'Review successfully created'});
         }
     ).catch( err => {
             res.json({message:'error'});

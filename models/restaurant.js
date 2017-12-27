@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
         Restaurant.hasMany(models.Review);
         Restaurant.hasMany(models.Order);
-        //models.restaurant.hasMany(models.review, { foreignKey: 'restaurant_id', sourceKey: 'id', onDelete: 'cascade' });
       }
     }
   });

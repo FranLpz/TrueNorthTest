@@ -1,7 +1,7 @@
 # Test NodeJs - True North
 Asumptions
-- postgres database installed with postgis plugin
-- rabbitmq-server installed
+- Postgres database installed with postgis plugin
+- Rabbitmq-server installed
 
 ## Run project
 ```
@@ -11,12 +11,12 @@ Asumptions
 - swagger project start
 ```
 
-## To Open the API editor in a new terminal run
+## To Open the API editor
+#### In a new terminal with the server up
 ```
 swagger project edit
 ```
-## For run tests
+## Run tests
 ```
 swagger project test
 ```
-sudo docker run --name rabbitmq-TN -p 5000:5672 -p 5001:15672 rabbitmq:3-management
